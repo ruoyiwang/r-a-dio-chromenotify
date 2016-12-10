@@ -11,9 +11,9 @@
     "default_title": "Click here!"
   },
   "permissions": [
-    "activeTab",
     "storage",
     "downloads",
+    "notifications",
     "https://r-a-d.io/api"
   ],
   "background": {

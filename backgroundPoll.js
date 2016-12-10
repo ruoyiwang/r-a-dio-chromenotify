@@ -2,7 +2,9 @@
 var API_PREFIX = "https://r-a-d.io/api";
 var API_DJ_IMG = "/dj-image/"
 
+var prevDjName = "";
 
+// get the DataUri of an external img via URL
 function getDataUri(url, callback) {
     var image = new Image();
 
@@ -19,29 +21,34 @@ function getDataUri(url, callback) {
 
     image.src = url;
 }
-// 
-// // Usage
-// getDataUri('/logo.png', function(dataUri) {
-//     // Do whatever you'd like with the Data URI!
-// });
-//
 
+function createNotification(djName, djImage) {
+  chrome.notifications.create("R/a/dio", {
+    type: "basic",
+    title: "R/a/dio",
+    iconUrl: djImage,
+    message: djName + "has started DJing"
+  });
+}
 
-function poll() {
-
+// Polls r-a-d.io for the name and image
+function pollRadio() {
   $.getJSON(
     API_PREFIX,
     function(res) {
       var djName = res.main.djname;
-      console.log(res.main.djname);
+
+      if (prevDjName == djName) {
+        return;
+      }
 
       chrome.storage.local.set({"djName":djName});
 
       var djImageId = res.main.dj.djimage;
       var imgUrl = API_PREFIX + API_DJ_IMG + djImageId;
-
       getDataUri(imgUrl, function(dataURI) {
         chrome.storage.local.set({"djImage":dataURI});
+        createNotification(djName, dataURI);
       });
     },
     function(err) {
@@ -50,4 +57,6 @@ function poll() {
   );
 }
 
-poll();
+pollRadio();
+// polls r-a-dio every 5 minutes
+window.setInterval(pollRadio, 1000*60*5);
