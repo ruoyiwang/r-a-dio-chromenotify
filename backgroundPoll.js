@@ -42,6 +42,8 @@ function pollRadio() {
         return;
       }
 
+      prevDjName = djName;
+
       chrome.storage.local.set({"djName":djName});
 
       var djImageId = res.main.dj.djimage;
