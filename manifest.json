@@ -21,6 +21,6 @@
     "https://r-a-d.io/api"
   ],
   "background": {
-    "scripts": ["resource/jquery-3.1.1.js", "backgroundPoll.js"]
+    "scripts": ["resource/jquery-3.1.1.js", "js/backgroundPoll.js"]
   }
 }
