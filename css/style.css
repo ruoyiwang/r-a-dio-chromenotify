@@ -1,10 +1,15 @@
 body {
-  width: 240px;
+  margin: 0;
+  padding: 0;
+}
+
+div.container {
+  min-width: 240px;
   display: flex;
   background-color: #222222;
   color: #787878;
   flex-direction: column;
-  margin: 1em 0;
+  padding-top: 1em;
 }
 
 img#dj-image {

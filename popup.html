@@ -1,9 +1,5 @@
 <!doctype html>
-<!--
- This page is shown when the extension button is clicked, because the
- "browser_action" field in manifest.json contains the "default_popup" key with
- value "popup.html".
- -->
+
 <html>
   <head>
     <title>R/a/dio notify</title>
@@ -14,11 +10,13 @@
     <script src="resource/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
     <script src="js/popup.js"></script>
   </head>
-  <body class="container">
-    <img id="dj-image" class="img-rounded" />
-    <div class="dj-container">
-      <div>DJ</div>
-      <h3 id="dj-name"></h3>
+  <body>
+    <div class="container">
+      <img id="dj-image" class="img-rounded" />
+      <div class="dj-container">
+        <div>DJ</div>
+        <h3 id="dj-name"></h3>
+      </div>
     </div>
   </body>
 </html>

@@ -1,4 +1,3 @@
-
 var API_PREFIX = "https://r-a-d.io/api";
 var API_DJ_IMG = "/dj-image/"
 
@@ -22,6 +21,7 @@ function getDataUri(url, callback) {
     image.src = url;
 }
 
+// sends a notification based on the dj name and image
 function createNotification(djName, djImage) {
   chrome.notifications.create("R/a/dio", {
     type: "basic",
@@ -31,6 +31,15 @@ function createNotification(djName, djImage) {
   });
 }
 
+function setBadge(djName) {
+  chrome.browserAction.setBadgeText({
+    text: djName.charAt(0)
+  });
+  chrome.browserAction.setBadgeBackgroundColor({
+    color: "#401000"
+  })
+}
+
 // Polls r-a-d.io for the name and image
 function pollRadio() {
   $.getJSON(
@@ -38,12 +47,13 @@ function pollRadio() {
     function(res) {
       var djName = res.main.djname;
 
+      // only poll img and update if dj changed
       if (prevDjName == djName) {
         return;
       }
-
       prevDjName = djName;
 
+      setBadge(djName);
       chrome.storage.local.set({"djName":djName});
 
       var djImageId = res.main.dj.djimage;
