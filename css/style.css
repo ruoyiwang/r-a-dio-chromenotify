@@ -1,0 +1,8 @@
+body {
+  width: 180px;
+  /*background-color: #222222;*/
+}
+
+img#djImage {
+  max-width: 100%;
+}
