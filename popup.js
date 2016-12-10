@@ -107,11 +107,11 @@
 
 chrome.storage.local.get("djName",
   function(res){
-    $('#djName').text(res.djName);
+    $('#dj-name').text(res.djName);
   });
 
 chrome.storage.local.get("djImage",
   function(res){
     console.log(res.djImage);
-    $('#djImage').attr("src", res.djImage);
+    $('#dj-image').attr("src", res.djImage);
   });
