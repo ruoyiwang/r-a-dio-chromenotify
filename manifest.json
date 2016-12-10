@@ -16,7 +16,6 @@
   },
   "permissions": [
     "storage",
-    "downloads",
     "notifications",
     "https://r-a-d.io/api"
   ],
